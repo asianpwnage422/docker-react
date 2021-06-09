@@ -24,4 +24,6 @@ deploy:
   # only deploy app that is on master branch
   on:
     branch: master 
-  # use IAM to manage API keys
+  # use IAM to manage API keys, set environment in Travis
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
