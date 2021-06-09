@@ -9,3 +9,19 @@ before_install:
 
 script:
   - docker run -e CI=true thehill1111/docker-react npm run test
+
+deploy:
+# travisCI will auto deploy to server
+  provider: elasticbeanstalk
+# shows what region elasticbeanstalk is created in, ie us-west-2
+  region: "us-east-2"
+  app: "docker" 
+  env: "Docker-env"
+  # zips all the files, and copies to a bucket at AWS
+  bucket_name: "elasticbeanstalk-us-east-2-515176935160"
+  # folder will be created after deployment, so first time is app name
+  bucket_path: "docker"
+  # only deploy app that is on master branch
+  on:
+    branch: master 
+  # use IAM to manage API keys
